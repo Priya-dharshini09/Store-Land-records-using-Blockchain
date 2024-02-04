@@ -14,15 +14,15 @@ export default function Profile () {
     async function getNFTData(tokenId) {
         const ethers = require("ethers");
         let sumPrice = 0;
-        //After adding your Hardhat network to your metamask, this code will get providers and signers
+       
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const addr = await signer.getAddress();
 
-        //Pull the deployed contract instance
+       
         let contract = new ethers.Contract(MarketplaceJSON.address, MarketplaceJSON.abi, signer)
 
-        //create an NFT Token
+        
         let transaction = await contract.getMyNFTs()
 
         /*
@@ -64,15 +64,15 @@ export default function Profile () {
         <div className="profileClass" style={{"min-height":"100vh"}}>
             <Navbar></Navbar>
             <div className="profileClass">
-            <div className="flex text-center flex-col mt-11 md:text-2xl text-white">
+            <div className="flex text-center flex-col mt-11 md:text-2xl text-black">
                 <div className="mb-5">
                     <h2 className="font-bold">Wallet Address</h2>  
                     {address}
                 </div>
             </div>
-            <div className="flex flex-row text-center justify-center mt-10 md:text-2xl text-white">
+            <div className="flex flex-row text-center justify-center mt-10 md:text-2xl text-black">
                     <div>
-                        <h2 className="font-bold">No. of NFTs</h2>
+                        <h2 className="font-bold">No. of Lands</h2>
                         {data.length}
                     </div>
                     <div className="ml-20">
@@ -80,7 +80,7 @@ export default function Profile () {
                         {totalPrice} ETH
                     </div>
             </div>
-            <div className="flex flex-col text-center items-center mt-11 text-white">
+            <div className="flex flex-col text-center items-center mt-11 text-black">
                 <h2 className="font-bold">Your NFTs</h2>
                 <div className="flex justify-center flex-wrap max-w-screen-xl">
                     {data.map((value, index) => {

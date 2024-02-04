@@ -1,3 +1,5 @@
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -35,6 +37,15 @@ function updateButton() {
 async function connectWebsite() {
 
     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    
+    await window.ethereum.request({ method: 'eth_requestAccounts' })
+      .then(() => {
+        updateButton();
+        console.log("here");
+        getAddress();
+        window.location.replace(location.pathname)
+      });
+
     if(chainId !== '0x80001')
     {
       //alert('Incorrect network! Switch your metamask network to Rinkeby');
@@ -43,13 +54,7 @@ async function connectWebsite() {
         params: [{ chainId: '0x80001' }],
      })
     }  
-    await window.ethereum.request({ method: 'eth_requestAccounts' })
-      .then(() => {
-        updateButton();
-        console.log("here");
-        getAddress();
-        window.location.replace(location.pathname)
-      });
+    
 }
 
   useEffect(() => {
@@ -72,11 +77,12 @@ async function connectWebsite() {
     return (
       <div className="">
         <nav className="w-screen">
-          <ul className='flex items-end justify-between py-3 bg-transparent text-white pr-5'>
+          <ul className='flex items-end justify-between py-3 bg-transparent text-black pr-5'>
           <li className='flex items-end ml-5 pb-2'>
             <Link to="/">
+           
             <div className='inline-block font-bold text-xl ml-2'>
-              NFT Marketplace
+              Land Records
             </div>
             </Link>
           </li>
@@ -84,20 +90,20 @@ async function connectWebsite() {
             <ul className='lg:flex justify-between font-bold mr-10 text-lg'>
               {location.pathname === "/" ? 
               <li className='border-b-2 hover:pb-0 p-2'>
-                <Link to="/">Marketplace</Link>
+                <Link to="/">Land Records</Link>
               </li>
               :
               <li className='hover:border-b-2 hover:pb-0 p-2'>
-                <Link to="/">Marketplace</Link>
+                <Link to="/">Land Records</Link>
               </li>              
               }
               {location.pathname === "/sellNFT" ? 
               <li className='border-b-2 hover:pb-0 p-2'>
-                <Link to="/sellNFT">List My NFT</Link>
+                <Link to="/sellNFT">Upload Land</Link>
               </li>
               :
               <li className='hover:border-b-2 hover:pb-0 p-2'>
-                <Link to="/sellNFT">List My NFT</Link>
+                <Link to="/sellNFT">Upload Land</Link>
               </li>              
               }              
               {location.pathname === "/profile" ? 
@@ -116,7 +122,7 @@ async function connectWebsite() {
           </li>
           </ul>
         </nav>
-        <div className='text-white text-bold text-right mr-10 text-sm'>
+        <div className='text-black text-bold text-right mr-10 text-sm'>
           {currAddress !== "0x" ? "Connected to":"Not Connected. Please login to view NFTs"} {currAddress !== "0x" ? (currAddress.substring(0,15)+'...'):""}
         </div>
       </div>

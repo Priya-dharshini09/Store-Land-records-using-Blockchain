@@ -18,8 +18,8 @@ module.exports = {
       chainId: 80001
     },
     mumbai: {
-      url: `https://polygon-mumbai.g.alchemy.com/v2/zH5vdUKL15nviz15Ufi96WNMKgMpK_YY`,
-      accounts: ["5efeabcc7143d2dbf03329b527ce48b12ec40d328294fa36e467ee358cc0c14f"]
+      url: ``,
+      accounts: [""]
     }
   },
   solidity: {
